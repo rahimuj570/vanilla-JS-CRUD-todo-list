@@ -21,8 +21,9 @@ const addList = () => {
 };
 
 // ====== Show UI List =====
-const showUi = () => {
+function showUi() {
   const tbody = getElem("tbody");
+  tbody.textContent = "";
   const getAllDataArray = getLocal();
 
   getAllDataArray.map((data, index) => {
@@ -30,20 +31,24 @@ const showUi = () => {
     tr.innerHTML = `<td>${++index}</td>
               <td>${data}</td>
               <td id="action">
-                <span id="edit" onclick="editHandler()"
+                <span id="edit" onclick="editHandler(${index})"
                   ><i class="fa-solid fa-pen-to-square"></i
                 ></span>
-                <span id="delete" onclick="deleteHandler()"
+                <span id="delete" onclick="deleteHandler(${index})"
                   ><i class="fa-solid fa-trash-can"></i
                 ></span>
               </td>`;
     tbody.appendChild(tr);
   });
-};
+}
 
-// ====== Todo Edit Handler =====
-const editHandler = () => {
-  alert("d");
+// ====== Todo Delete Handler =====
+const deleteHandler = (index) => {
+  const getAllDataArray = getLocal();
+  console.log(index - 1);
+  getAllDataArray.splice(index - 1, 1);
+  setLocal(getAllDataArray);
+  showUi();
 };
 
 // ====== Set Local Storage =====
@@ -54,4 +59,4 @@ const getLocal = () => JSON.parse(localStorage.getItem("todo"));
 
 // ====== Global Array ======
 let arr = getLocal();
-showUi();
+window.onload = () => showUi();
