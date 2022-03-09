@@ -25,10 +25,9 @@ function showUi() {
   const tbody = getElem("tbody");
   tbody.textContent = "";
   const getAllDataArray = getLocal();
-
   getAllDataArray.map((data, index) => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${++index}</td>
+    tr.innerHTML = `<td>${index < 9 ? "0" + ++index : ++index}</td>
               <td>${data}</td>
               <td id="action">
                 <span id="edit" onclick="editHandler(${index})"
@@ -51,6 +50,11 @@ const deleteHandler = (index) => {
   showUi();
 };
 
+// ===== Clear All Handler ======
+const allClear = () => {
+  localStorage.clear();
+  getElem("tbody").textContent = "";
+};
 // ====== Set Local Storage =====
 const setLocal = (data) => localStorage.setItem("todo", JSON.stringify(data));
 
@@ -59,4 +63,4 @@ const getLocal = () => JSON.parse(localStorage.getItem("todo"));
 
 // ====== Global Array ======
 let arr = getLocal();
-window.onload = () => showUi();
+showUi();
