@@ -2,7 +2,7 @@
 const getElem = (idClass) => document.getElementById(idClass);
 
 // ====== Add Todo Handler ======
-const addList = (isUpdate, index) => {
+const addList = () => {
   let inputVal = getElem("inputField").value;
   let getLocalStorage = localStorage.getItem("todo");
   if (inputVal !== "") {
@@ -50,6 +50,7 @@ function showUi() {
 const deleteHandler = (index) => {
   const getAllDataArray = getLocal();
   getAllDataArray.splice(index - 1, 1);
+  arr = getAllDataArray;
   setLocal(getAllDataArray);
   showUi();
 };
@@ -70,6 +71,7 @@ getElem("EditBtn").addEventListener("click", () => {
   const prevData = getLocal();
   prevData[targetEdit] = getElem("inputField").value;
   setLocal(prevData);
+  arr = getLocal();
   getElem("EditBtn").style.display = "none";
   getElem("AddBtn").style.display = "block";
   getElem("inputField").value = "";
