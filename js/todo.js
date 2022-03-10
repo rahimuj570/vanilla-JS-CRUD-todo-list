@@ -14,9 +14,15 @@ const addList = () => {
       setLocal(arr);
     }
   } else {
-    alert("Please Add A Task");
+    swal("Please Add A Task.. 😐");
   }
   showUi();
+  getElem("AddBtn").innerText = "✔";
+  getElem("AddBtn").style.background = "#01C24E";
+  setTimeout(() => {
+    getElem("AddBtn").innerText = "Add";
+    getElem("AddBtn").style.background = "rgb(226, 98, 226)";
+  }, 1000);
   getElem("inputField").value = "";
 };
 
@@ -75,6 +81,10 @@ getElem("EditBtn").addEventListener("click", () => {
   getElem("EditBtn").style.display = "none";
   getElem("AddBtn").style.display = "block";
   getElem("inputField").value = "";
+  getElem("suc-edit").style.left = "0";
+  setTimeout(() => {
+    getElem("suc-edit").style.left = "-100vh";
+  }, 2000);
   showUi();
 });
 

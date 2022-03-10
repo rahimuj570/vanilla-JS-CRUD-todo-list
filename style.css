@@ -8,6 +8,7 @@
 /* ===== JS Conditional Toggle Start ==== */
 #EditBtn {
   display: none;
+  background: blue;
 }
 #AddBtn {
   display: block;
@@ -76,6 +77,16 @@ form input:focus {
 
 main {
   text-align: center;
+}
+#suc-edit {
+  background: rgb(255, 255, 255, 0.6);
+  padding: 10px 8px;
+  color: rgb(2, 167, 43);
+  display: inline-block;
+  border-radius: 5px;
+  position: fixed;
+  left: -100vh;
+  transition: 0.5s;
 }
 main button {
   padding: 8px 15px;
