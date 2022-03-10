@@ -13,7 +13,8 @@
       <h1>Simple Vanilla Todo List</h1>
       <form action="javascript:void(0)">
         <input id="inputField" type="text" />
-        <button onclick="addList()">Add</button>
+        <button id="AddBtn" onclick="addList()">Add</button>
+        <button id="EditBtn">Edit</button>
       </form>
     </header>
     <main>
@@ -25,6 +26,7 @@
             <th>What To Do?</th>
             <th>Action</th>
           </thead>
+
           <tbody id="tbody">
             <!-- <tr>
               <td>1</td>

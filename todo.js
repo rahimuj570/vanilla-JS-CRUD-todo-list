@@ -2,11 +2,11 @@
 const getElem = (idClass) => document.getElementById(idClass);
 
 // ====== Add Todo Handler ======
-const addList = () => {
+const addList = (isUpdate, index) => {
   let inputVal = getElem("inputField").value;
-  let getLocal = localStorage.getItem("todo");
+  let getLocalStorage = localStorage.getItem("todo");
   if (inputVal !== "") {
-    if (!getLocal) {
+    if (!getLocalStorage) {
       arr = [inputVal];
       setLocal(arr);
     } else {
@@ -50,11 +50,34 @@ const deleteHandler = (index) => {
   showUi();
 };
 
+// ===== Todo Edit Handler ======
+const editHandler = (index) => {
+  const getAllDataArray = getLocal();
+  const currentData = getAllDataArray[--index];
+  getElem("inputField").value = currentData;
+  getElem("inputField").focus();
+  getElem("EditBtn").style.display = "block";
+  getElem("AddBtn").style.display = "none";
+  targetEdit = index;
+};
+
+// ====== Edit Function =====
+getElem("EditBtn").addEventListener("click", () => {
+  const prevData = getLocal();
+  prevData[targetEdit] = getElem("inputField").value;
+  setLocal(prevData);
+  getElem("EditBtn").style.display = "none";
+  getElem("AddBtn").style.display = "block";
+  getElem("inputField").value = "";
+  showUi();
+});
+
 // ===== Clear All Handler ======
 const allClear = () => {
   localStorage.clear();
   getElem("tbody").textContent = "";
 };
+
 // ====== Set Local Storage =====
 const setLocal = (data) => localStorage.setItem("todo", JSON.stringify(data));
 
@@ -64,3 +87,4 @@ const getLocal = () => JSON.parse(localStorage.getItem("todo"));
 // ====== Global Array ======
 let arr = getLocal();
 showUi();
+let targetEdit;

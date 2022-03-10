@@ -4,6 +4,16 @@
   margin: 0;
   padding: 0;
 }
+/* ================= */
+/* ===== JS Conditional Toggle Start ==== */
+#EditBtn {
+  display: none;
+}
+#AddBtn {
+  display: block;
+}
+/* ===== JS Conditional Toggle End ==== */
+/* ================ */
 body {
   background-image: linear-gradient(
     to left,
