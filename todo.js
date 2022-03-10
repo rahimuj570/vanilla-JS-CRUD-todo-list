@@ -25,12 +25,11 @@ function showUi() {
   const tbody = getElem("tbody");
   tbody.textContent = "";
   const getAllDataArray = getLocal();
-  console.log(getAllDataArray);
-  if (getAllDataArray.length == 0) {
+  if (getAllDataArray === null || getAllDataArray.length == 0) {
     getElem("img-404").style.display = "block";
   } else {
     getElem("img-404").style.display = "none";
-    getAllDataArray.map((data, index) => {
+    getAllDataArray?.map((data, index) => {
       const tr = document.createElement("tr");
       tr.innerHTML = `<td>${index < 9 ? "0" + ++index : ++index}</td>
               <td>${data}</td>
@@ -50,7 +49,6 @@ function showUi() {
 // ====== Todo Delete Handler =====
 const deleteHandler = (index) => {
   const getAllDataArray = getLocal();
-  console.log(index - 1);
   getAllDataArray.splice(index - 1, 1);
   setLocal(getAllDataArray);
   showUi();
@@ -82,6 +80,7 @@ getElem("EditBtn").addEventListener("click", () => {
 const allClear = () => {
   localStorage.clear();
   getElem("tbody").textContent = "";
+  getElem("img-404").style.display = "block";
 };
 
 // ====== Set Local Storage =====
