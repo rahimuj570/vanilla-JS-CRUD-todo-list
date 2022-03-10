@@ -25,9 +25,14 @@ function showUi() {
   const tbody = getElem("tbody");
   tbody.textContent = "";
   const getAllDataArray = getLocal();
-  getAllDataArray.map((data, index) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${index < 9 ? "0" + ++index : ++index}</td>
+  console.log(getAllDataArray);
+  if (getAllDataArray.length == 0) {
+    getElem("img-404").style.display = "block";
+  } else {
+    getElem("img-404").style.display = "none";
+    getAllDataArray.map((data, index) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${index < 9 ? "0" + ++index : ++index}</td>
               <td>${data}</td>
               <td id="action">
                 <span id="edit" onclick="editHandler(${index})"
@@ -37,8 +42,9 @@ function showUi() {
                   ><i class="fa-solid fa-trash-can"></i
                 ></span>
               </td>`;
-    tbody.appendChild(tr);
-  });
+      tbody.appendChild(tr);
+    });
+  }
 }
 
 // ====== Todo Delete Handler =====

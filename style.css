@@ -12,6 +12,11 @@
 #AddBtn {
   display: block;
 }
+#img-404 {
+  display: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 /* ===== JS Conditional Toggle End ==== */
 /* ================ */
 body {
